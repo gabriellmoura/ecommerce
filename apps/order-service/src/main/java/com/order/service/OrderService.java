@@ -4,10 +4,14 @@ import com.order.client.InventoryFeignClient;
 import com.order.client.ProductFeignClient;
 import com.order.dto.InventoryDTO;
 import com.order.dto.OrderDTO;
+import com.order.entity.OrderEntity;
 import com.order.exceptions.BadRequestException;
+import com.order.exceptions.NotFoundException;
 import com.order.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -39,5 +43,13 @@ public class OrderService {
                 inventoryUpdate.productId());
 
         return repository.save(orderDTO.toEntity()).toDTO();
+    }
+
+    public OrderDTO findById(UUID id) {
+        final var orderEntity = repository.findById(id);
+        return orderEntity.stream()
+                .findFirst()
+                .map(OrderEntity::toDTO)
+                .orElseThrow(() -> new NotFoundException(String.format("Order not found by id %s", id)));
     }
 }

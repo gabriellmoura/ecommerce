@@ -31,3 +31,8 @@ spring:
 #                locator:
 #                    enabled: true
 #                    lowerCaseServiceId: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "actuator,health,prometheus"

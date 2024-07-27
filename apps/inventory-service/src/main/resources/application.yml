@@ -11,14 +11,10 @@ server:
 spring:
   application:
     name: inventory-service
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: none
   r2dbc:
-    url: r2dbc:h2:file:///./testdb
+    url: r2dbc:h2:file:///./inventorydb
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "actuator,health,prometheus"

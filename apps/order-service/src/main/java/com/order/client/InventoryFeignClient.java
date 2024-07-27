@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "inventory-service", url = "http://localhost:8082/inventory", configuration = InventoryServiceErrorDecoder.class)
+@FeignClient(name = "inventory-service", configuration = InventoryServiceErrorDecoder.class)
 public interface InventoryFeignClient {
 
-    @GetMapping("/product_id/{id}")
+    @GetMapping("/inventory/product_id/{id}")
     InventoryDTO findByProductId(@PathVariable Long id);
 
-    @PutMapping("/{id}")
+    @PutMapping("/inventory/{id}")
     InventoryDTO update(@PathVariable Long id, @RequestBody InventoryDTO request);
 }

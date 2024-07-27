@@ -41,6 +41,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.13.2</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
